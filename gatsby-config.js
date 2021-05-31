@@ -1,3 +1,19 @@
+let contentfulConfig
+try {
+  contentfulConfig = require('./.contentful')
+} catch (e) {
+  contentfulConfig = {
+    production: {
+      spaceId: process.env.SPACE_ID_e3eulggnkfm7,
+      accessToken: process.env.ACCESS_TOKEN_CFPAT-agrN0NK6k4tsp_dRWV2vQy3B1bN-waaQAbfV5VnXepk,
+    },
+  }
+} finally {
+  const { spaceId, accessToken } = contentfulConfig.production
+  if (!spaceId || !accessToken) {
+    throw new Error('Contentful space ID and access token need to be provided.')
+  }
+}
 module.exports = {
   plugins: [
     {
@@ -7,7 +23,7 @@ module.exports = {
         path: `src/`,
         imagesPath: `src/images/`,
         iconFile: `src/images/icon.png`,
-        siteTitle: `Software developer CV Martin Andersen`,
+        siteTitle: `Serhii Udowenko personal site`,
         siteUrl: `https://gatsby-starter-banshorian.vercel.app`,
         siteName: `Martin Andersen developer portfolio | @webmaeistro`,
         siteShortName: `Martin Andersen CV`,
